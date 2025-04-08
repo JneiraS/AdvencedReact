@@ -3,4 +3,5 @@ export interface Movies {
     Title: number;
     Genre: string;
     Poster: string;
+    Year: string;
   }

@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #e50914;
+  --primary-color: #f18f56;
   --accent-color: #b81d24;
   --background-color: #141414;
   --text-color: #ffffff;
@@ -13,7 +13,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--font-family);
-  background-color: var(--background-color);
+  background: linear-gradient(to bottom, var(--card-bg), var(--background-color));
+
   color: var(--text-color);
   display: flex;
   justify-content: center;
@@ -27,6 +28,76 @@ body {
   padding: 2rem;
   text-align: center;
 }
+.App {
+margin-top: 200px;
+}
+
+/* Navigation styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--card-bg);
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.navbar-menu {
+  display: flex;
+  justify-content: left;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-item {
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.navbar-item a {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
+}
+
+.navbar-item a:hover {
+  color: var(--primary-color);
+}
+
+.navbar-item a.active {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+input[type="text"] {
+  position: sticky;
+  top: 15px;
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  color: var(--text-color);
+  background-color: var(--card-bg);
+  outline: none;
+  transition: border-color 0.3s ease;
+
+}
+
+input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+input[type="text"]:focus {
+  border-color: var(--accent-color);
+}
 
 h1 {
   font-size: 2.5rem;
@@ -37,15 +108,14 @@ h1 {
 /* Grille de films */
 ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
   list-style: none;
-  padding: 0;
   margin: 0;
+  row-gap: 3.5rem;
 }
 
 li {
-  display: flex;
   flex-direction: column;
   gap: 1rem;
   background-color: var(--card-bg);
@@ -60,12 +130,20 @@ li {
   align-items: center;
   justify-content: center;
   text-align: center;
+  
+}
+.add-btn {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
-li:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-}
 
 @media (max-width: 600px) {
   h1 {
