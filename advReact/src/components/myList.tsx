@@ -1,54 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from 'axios';
+import { GetMovies } from "../handlers/handleMovies";
 
+import { Movies} from "../types/movies"; 
 
-// Types
-interface MovieAPIResponse {
-    imdbID: string;
-    Title: string;
-    Genre: string;
-    Poster: string;
-    Year: string;
-    // Autres propriétés potentielles de l'API
-  }
-  
-  interface Movies {
-    imdbID: string;
-    Title: string;
-    Genre: string;
-    Poster: string;
-    Year: string;
-  }
-
-// Fonctions pour récupérer et transformer les données
-const fetchMoviesFromAPI = async (): Promise<MovieAPIResponse[]> => {
-    try {
-      const response = await axios.get<MovieAPIResponse[]>('http://localhost:3000/movies');
-      if (!Array.isArray(response.data)) {
-        throw new Error('Invalid response format');
-      }
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching movies:', error);
-      throw error;
-    }
-  };
-  
-  const transformMovieData = (movies: MovieAPIResponse[]): Movies[] => {
-    return movies.map((movie) => ({
-      imdbID: movie.imdbID,
-      Title: movie.Title,
-      Genre: movie.Genre,
-      Poster: movie.Poster,
-      Year: movie.Year,
-    }));
-  };
-  
-  const getMovies = async (): Promise<Movies[]> => {
-    const movies = await fetchMoviesFromAPI();
-    return transformMovieData(movies);
-  };
-  
   // Composant MovieList
   const MovieList: React.FC = () => {
     const [movies, setMovies] = useState<Movies[]>([]);
@@ -59,7 +13,7 @@ const fetchMoviesFromAPI = async (): Promise<MovieAPIResponse[]> => {
       const loadMovies = async () => {
         try {
           setLoading(true);
-          const fetchedMovies = await getMovies();
+          const fetchedMovies = await GetMovies();
           setMovies(fetchedMovies);
           setError(null);
         } catch (err) {
@@ -109,3 +63,5 @@ const fetchMoviesFromAPI = async (): Promise<MovieAPIResponse[]> => {
   };
   
   export default MovieList;
+
+

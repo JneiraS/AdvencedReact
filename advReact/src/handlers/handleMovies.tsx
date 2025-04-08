@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Movies } from "../types/movies"; 
+import { Movies, MovieAPIResponse} from "../types/movies"; 
 
 const postMovies = async (data: Movies): Promise<Movies[]> => {
     try {
@@ -26,45 +26,33 @@ export const AddToListButton = ({ movie }: { movie: Movies }) => {
         </a>
     );
 };
-interface MovieAPIResponse {
-    imdbID: string;
-    Title: string;
-    Genre: string;
-    Poster: string;
-    Year: string;
-    // Ajouter d'autres propriétés si nécessaire
-}
-
-
 
 const fetchMoviesFromAPI = async (): Promise<MovieAPIResponse[]> => {
     try {
-        const response = await axios.get<MovieAPIResponse[]>('http://localhost:3000/movies');
-        if (!Array.isArray(response.data)) {
-            throw new Error('Invalid response format');
-        }
-        return response.data;
+      const response = await axios.get<MovieAPIResponse[]>('http://localhost:3000/movies');
+      if (!Array.isArray(response.data)) {
+        throw new Error('Invalid response format');
+      }
+      return response.data;
     } catch (error) {
-        console.error('Error fetching movies:', error);
-        throw error;
+      console.error('Error fetching movies:', error);
+      throw error;
     }
-};
-
-const transformMovieData = (movies: MovieAPIResponse[]): Movies[] => {
+  };
+  
+  const transformMovieData = (movies: MovieAPIResponse[]): Movies[] => {
     return movies.map((movie) => ({
-        imdbID: movie.imdbID,
-        Title: movie.Title,
-        Genre: movie.Genre,
-        Poster: movie.Poster,
-        Year: movie.Year,
+      imdbID: movie.imdbID,
+      Title: movie.Title,
+      Genre: movie.Genre,
+      Poster: movie.Poster,
+      Year: movie.Year,
     }));
-};
-
-const getMovies = async (): Promise<Movies[]> => {
+   };
+  
+   export const GetMovies = async (): Promise<Movies[]> => {
     const movies = await fetchMoviesFromAPI();
     return transformMovieData(movies);
-};
+  };
 
-
-
-export default AddToListButton; getMovies;
+export default AddToListButton; GetMovies;
