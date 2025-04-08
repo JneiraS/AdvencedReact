@@ -26,22 +26,45 @@ export const AddToListButton = ({ movie }: { movie: Movies }) => {
         </a>
     );
 };
+interface MovieAPIResponse {
+    imdbID: string;
+    Title: string;
+    Genre: string;
+    Poster: string;
+    Year: string;
+    // Ajouter d'autres propriétés si nécessaire
+}
 
-const GetMovies = async (): Promise<Movies[]> => {
+
+
+const fetchMoviesFromAPI = async (): Promise<MovieAPIResponse[]> => {
     try {
-        const response = await axios.get<Movies[]>('http://localhost:3000/movies');
-        const movies = Array.isArray(response.data) ? response.data.map((movie: Movies) => ({
-            imdbID: movie.imdbID,
-            Title: movie.Title,
-            Genre: movie.Genre,
-            Poster: movie.Poster,
-            Year: movie.Year,
-        })) : [];
-        return movies;
+        const response = await axios.get<MovieAPIResponse[]>('http://localhost:3000/movies');
+        if (!Array.isArray(response.data)) {
+            throw new Error('Invalid response format');
+        }
+        return response.data;
     } catch (error) {
         console.error('Error fetching movies:', error);
         throw error;
     }
-}
+};
 
-export default AddToListButton; GetMovies;
+const transformMovieData = (movies: MovieAPIResponse[]): Movies[] => {
+    return movies.map((movie) => ({
+        imdbID: movie.imdbID,
+        Title: movie.Title,
+        Genre: movie.Genre,
+        Poster: movie.Poster,
+        Year: movie.Year,
+    }));
+};
+
+const getMovies = async (): Promise<Movies[]> => {
+    const movies = await fetchMoviesFromAPI();
+    return transformMovieData(movies);
+};
+
+
+
+export default AddToListButton; getMovies;
