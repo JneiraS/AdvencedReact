@@ -1,6 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Movies } from "../types/movies"; 
 import { AddToListButton } from "../handlers/handleMovies";
+import { searchMovies } from "../services/movieAPI";
+
+
+
+// Composant de recherche
+const SearchBar: React.FC<{ value: string; onChange: (event: React.ChangeEvent<HTMLInputElement>) => void }> = ({ value, onChange }) => (
+  <input type="text" placeholder="Recherche" value={value} onChange={onChange} />
+);
+
+// Composant d'affichage d'un film
+const MovieItem: React.FC<{ movie: Movies }> = ({ movie }) => (
+  <li>
+    {movie.Title} ({movie.Year})
+    <img src={movie.Poster} alt={movie.Title} className="movie-poster" style={{ width: "150px", height: "225px" }} />
+    
+    <AddToListButton movie={movie} />
+  </li>
+);
+
 
 const ListeMovies: React.FC = () => {
   // Déclaration des états
@@ -14,51 +33,33 @@ const ListeMovies: React.FC = () => {
     setSearchTerm(event.target.value);
   };
 
+
   useEffect(() => {
     // Si le champ de recherche est vide, on ne fait pas de requête
     if (!searchTerm) {
       setMovies([]);
       return;
     }
-
-    const recupererMovies = async () => {
-      setChargement(true);
-      setErreur(null);
+    const fetchMovies = async () => {
       try {
-        // Utilisation de encodeURIComponent pour gérer les caractères spéciaux
-        const url = `https://www.omdbapi.com/?s=${encodeURIComponent(
-          searchTerm
-        )}&apikey=c90b7107`;
-        const reponse = await fetch(url);
-        if (!reponse.ok) {
-          throw new Error("Erreur lors du chargement des données");
-        }
-        const donnees = await reponse.json();
-        if (donnees.Response === "False") {
-          throw new Error(donnees.Error || "Aucun film trouvé");
-        }
-       
-       
-        setMovies(donnees.Search);
+        setChargement(true);
+        const data = await searchMovies(searchTerm);
+        setMovies(data);
+        setErreur(null);
       } catch (error: any) {
         setErreur(error.message);
+        setMovies([]);
       } finally {
         setChargement(false);
       }
     };
 
-    recupererMovies();
+    fetchMovies();
   }, [searchTerm]);
 
   return (
     <div>
-        {/* Barre de recherche */}
-        <input
-        type="text"
-        placeholder="Recherche"
-        value={searchTerm}
-        onChange={handleSearch}
-      />
+      <SearchBar value={searchTerm} onChange={handleSearch} />
       <h1>Liste des Films</h1>
   
       {chargement ? (
@@ -69,12 +70,8 @@ const ListeMovies: React.FC = () => {
         <ul>
           {movies.map((movie) => (
         
-                 <li key={movie.imdbID}>
-                 {movie.Title} ({movie.Year})
-                 <img src={movie.Poster} alt={movie.Title} style={{ width: "150px", height: "225px" }} />
-                
-                 <AddToListButton movie={movie}/>               
-                 </li>
+        <MovieItem key={movie.imdbID} movie={movie} />
+
           ))}
         </ul>
       ) : (
