@@ -2,6 +2,9 @@
 export default {
   testEnvironment: "node",
   transform: {
-    "^.+\.tsx?$": ["ts-jest",{}],
+    "^.+\\.tsx?$": ["ts-jest", {
+      tsconfig: "tsconfig.test.json"
+    }],
   },
+  setupFilesAfterEnv: ['jest-fetch-mock/setupJest.js'],
 };

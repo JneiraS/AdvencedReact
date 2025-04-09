@@ -1,7 +1,7 @@
 import ListeMovies from './hooks/h_movies'
 import { Routes, Route } from "react-router";
 import './App.css'
-import Navbar from './components/navbar';
+import Navbar from './components/home';
 import MovieList from './handlers/handleMovies';
 
 

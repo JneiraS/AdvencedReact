@@ -1,83 +1,79 @@
 import React, { useEffect, useState } from "react";
-import { Movies } from "../types/movies"; 
-import { AddToListButton } from "../handlers/handleMovies";
+import { Movies } from "../types/movies";
 import { searchMovies } from "../services/movieAPI";
+import { useDebounce } from 'use-debounce'; 
+import { SearchBar, MovieItem } from "../components/home";
 
 
 
-// Composant de recherche
-const SearchBar: React.FC<{ value: string; onChange: (event: React.ChangeEvent<HTMLInputElement>) => void }> = ({ value, onChange }) => (
-  <input type="text" placeholder="Recherche" value={value} onChange={onChange} />
-);
 
-// Composant d'affichage d'un film
-const MovieItem: React.FC<{ movie: Movies }> = ({ movie }) => (
-  <li>
-    {movie.Title} ({movie.Year})
-    <img src={movie.Poster} alt={movie.Title} className="movie-poster" />    
-    <AddToListButton movie={movie} />
-  </li>
-);
 
+export const renderContent = (
+  isLoading: boolean,
+  error: string | null,
+  movies: Movies[]
+) => {
+  if (isLoading) return <p>Chargement...</p>;
+  if (error) return <p>Erreur : {error}</p>;
+  if (movies.length > 0) {
+    return (
+      <ul>
+        {movies.map((movie) => (
+          <MovieItem key={movie.imdbID} movie={movie} />
+        ))}
+      </ul>
+    );
+  }
+  return <p>Aucun film trouvé</p>;
+};
 
 const ListeMovies: React.FC = () => {
-  // Déclaration des états
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const [movies, setMovies] = useState<Movies[]>([]);
-  const [chargement, setChargement] = useState<boolean>(false);
-  const [erreur, setErreur] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
 
-  // Gestion de la saisie de l'utilisateur
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
-
   useEffect(() => {
-    // Si le champ de recherche est vide, on ne fait pas de requête
-    if (!searchTerm) {
-      setMovies([]);
-      return;
-    }
     const fetchMovies = async () => {
+      if (!debouncedSearchTerm) {
+        setMovies([]);
+        return;
+      }
+
+      setIsLoading(true);
+      setError(null);
+
       try {
-        setChargement(true);
-        const data = await searchMovies(searchTerm);
-        setMovies(data);
-        setErreur(null);
-      } catch (error: any) {
-        setErreur(error.message);
+        const results = await searchMovies(debouncedSearchTerm);
+        setMovies(results);
+      } catch (err) {
+        const errorMessage = err instanceof Error
+          ? err.message
+          : 'Une erreur inattendue est survenue';
+        setError(errorMessage);
         setMovies([]);
       } finally {
-        setChargement(false);
+        setIsLoading(false);
       }
     };
 
     fetchMovies();
-  }, [searchTerm]);
+  }, [debouncedSearchTerm]);
 
   return (
     <div>
-      <SearchBar value={searchTerm} onChange={handleSearch} />
+      <SearchBar value={searchTerm} onChange={handleSearchChange} />
       <h1>Liste des Films</h1>
-  
-      {chargement ? (
-        <p>Chargement...</p>
-      ) : erreur ? (
-        <p>Erreur : {erreur}</p>
-      ) : movies.length > 0 ? (
-        <ul>
-          {movies.map((movie) => (
-        
-        <MovieItem key={movie.imdbID} movie={movie} />
-
-          ))}
-        </ul>
-      ) : (
-        <p>Aucun film trouvé</p>
-      )}
+      {renderContent(isLoading, error, movies)}
     </div>
   );
 };
 
 export default ListeMovies;
+
+
