@@ -50,7 +50,6 @@ export const fetchMoviesFromAPI = async (): Promise<MovieAPIResponse[]> => {
     try {
         const response = await axios.get<MovieAPIResponse[]>('http://localhost:3000/movies');
 
-        // Vérifier si la réponse est un tableau
         if (!Array.isArray(response.data)) {
             console.error("La réponse n'est pas un tableau : ", response.data);
             throw new Error('Invalid response format');
@@ -90,36 +89,43 @@ const MovieList: React.FC = () => {
     const [note, setNote] = useState<string>('');
 
     const handleSubmitNote = async (movie: Movies, note: string) => {
-      
         try {
-            
             setAdding(true);
+    
+            // Supprimer l'ancien enregistrement sans note
+            await handleDelete(movie.imdbID);
+    
+            // Ajouter le nouvel enregistrement avec la note
             await axios.post('http://localhost:3000/movies', {
-           
                 Title: movie.Title,
                 Year: movie.Year,
                 imdbID: movie.imdbID,
                 Type: movie.Type,
                 Poster: movie.Poster,
-                Note: note 
+                Note: note
             });
-            console.log("Note submitted successfully");
+    
+            // Mise à jour locale de la liste des films
+            setMovies((prevMovies) => [
+                ...prevMovies.filter((m) => m.imdbID !== movie.imdbID),
+                { ...movie, Note: note }
+            ]);
+    
+            console.log("Note soumise avec succès");
+    
         } catch (err) {
-            console.error("Error submitting note:", err);
+            console.error("Erreur lors de la soumission de la note:", err);
         } finally {
             setAdding(false);
         }
-        await handleDelete(movie.imdbID);
     };
 
     const handleDelete = async (movieId: string) => {
-        try {
-            await axios.delete(`http://localhost:3000/movies/${movieId}`);
-            setMovies((prevMovies) => prevMovies.filter((prevMovie) => prevMovie.imdbID !== movieId));
-            console.log(`Movie with ID ${movieId} deleted successfully`);
-        } catch (err) {
-            console.error("Error deleting movie:", err);
-        }
+        await axios.get(`http://localhost:3000/movies?imdbID=${movieId}`).then(async (res) => {
+            for (const movie of res.data) {
+                await axios.delete(`http://localhost:3000/movies/${movie.id}`);
+            }
+        });
     };
 
     useEffect(() => {
@@ -127,7 +133,6 @@ const MovieList: React.FC = () => {
             try {
                 setLoading(true);
                 const fetchedMovies = await getMovies();
-                console.log("Films récupérés:", fetchedMovies);
                 setMovies(fetchedMovies);
             } catch (err) {
                 console.error("Erreur lors du chargement des films:", err);
@@ -182,11 +187,11 @@ const MovieList: React.FC = () => {
                                             onClick={() => handleSubmitNote(movie, note)}
                                             disabled={adding}
                                         >
-                                            Submit Note
+                                            Soumettre la note
                                         </button>
                                     </>
                                 )}
-                                <p>Note: {movie.Note}</p>
+                                {movie.Note && <p>Note: {movie.Note}</p>}
                             </div>
                         </div>
                     ))}
@@ -195,5 +200,6 @@ const MovieList: React.FC = () => {
         </div>
     );
 };
+
 export { MovieList };
 export default MovieList;

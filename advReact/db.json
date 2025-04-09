@@ -1,21 +1,13 @@
 {
   "movies": [
     {
-      "id": "cee5",
-      "Title": "Pos katantisame, Sotiri!..",
-      "Year": "1972",
-      "imdbID": "tt0232441",
+      "id": "eb3c",
+      "Title": "Kelly & Cal",
+      "Year": "2014",
+      "imdbID": "tt3082826",
       "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BZGFjMDQ4ZTgtNjBkYy00YWI3LThjZmQtYjFkZjQxZmU5NjY1XkEyXkFqcGc@._V1_SX300.jpg"
-    },
-    {
-      "id": "4096",
-      "Title": "Pos katantisame, Sotiri!..",
-      "Year": "1972",
-      "imdbID": "tt0232441",
-      "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BZGFjMDQ4ZTgtNjBkYy00YWI3LThjZmQtYjFkZjQxZmU5NjY1XkEyXkFqcGc@._V1_SX300.jpg",
-      "Note": "8"
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMjA3OTI1NjczNV5BMl5BanBnXkFtZTgwMzY4NDc0MjE@._V1_SX300.jpg",
+      "Note": "7"
     }
   ]
 }
