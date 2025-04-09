@@ -1,28 +1,21 @@
 {
   "movies": [
     {
-      "id": "c9c0",
-      "Title": "Seven Psychopaths",
-      "Year": "2012",
-      "imdbID": "tt1931533",
+      "id": "cee5",
+      "Title": "Pos katantisame, Sotiri!..",
+      "Year": "1972",
+      "imdbID": "tt0232441",
       "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BMTgwMzUxMjc0M15BMl5BanBnXkFtZTcwMzQ2MjYyOA@@._V1_SX300.jpg"
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZGFjMDQ4ZTgtNjBkYy00YWI3LThjZmQtYjFkZjQxZmU5NjY1XkEyXkFqcGc@._V1_SX300.jpg"
     },
     {
-      "id": "222b",
-      "Title": "Miss Sloane",
-      "Year": "2016",
-      "imdbID": "tt4540710",
+      "id": "4096",
+      "Title": "Pos katantisame, Sotiri!..",
+      "Year": "1972",
+      "imdbID": "tt0232441",
       "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BMTAyODY4Njc4MjBeQTJeQWpwZ15BbWU4MDI0NTIzMDAy._V1_SX300.jpg"
-    },
-    {
-      "id": "4293",
-      "Title": "Back to the Future",
-      "Year": "1985",
-      "imdbID": "tt0088763",
-      "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BZmM3ZjE0NzctNjBiOC00MDZmLTgzMTUtNGVlOWFlOTNiZDJiXkEyXkFqcGc@._V1_SX300.jpg"
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZGFjMDQ4ZTgtNjBkYy00YWI3LThjZmQtYjFkZjQxZmU5NjY1XkEyXkFqcGc@._V1_SX300.jpg",
+      "Note": "8"
     }
   ]
 }

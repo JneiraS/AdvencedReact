@@ -1,16 +1,19 @@
 export interface Movies {
   imdbID: string;
   Title: string;
-  Genre: string;
+  Type: string;
   Poster: string;
   Year: string;
+  Note : string;
+
+
 }
 
 export interface MovieAPIResponse {
   imdbID: string;
   Title: string;
-  Genre: string;
+  Type: string;
   Poster: string;
   Year: string;
-  // Ajouter d'autres propriétés si nécessaire
+  Note ?: string;
 }

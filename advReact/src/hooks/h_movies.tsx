@@ -38,6 +38,7 @@ const ListeMovies: React.FC = () => {
           throw new Error(donnees.Error || "Aucun film trouvé");
         }
        
+       
         setMovies(donnees.Search);
       } catch (error: any) {
         setErreur(error.message);
@@ -67,9 +68,11 @@ const ListeMovies: React.FC = () => {
       ) : movies.length > 0 ? (
         <ul>
           {movies.map((movie) => (
+        
                  <li key={movie.imdbID}>
                  {movie.Title} ({movie.Year})
                  <img src={movie.Poster} alt={movie.Title} style={{ width: "150px", height: "225px" }} />
+                
                  <AddToListButton movie={movie}/>               
                  </li>
           ))}
