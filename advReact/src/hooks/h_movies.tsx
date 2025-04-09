@@ -14,8 +14,7 @@ const SearchBar: React.FC<{ value: string; onChange: (event: React.ChangeEvent<H
 const MovieItem: React.FC<{ movie: Movies }> = ({ movie }) => (
   <li>
     {movie.Title} ({movie.Year})
-    <img src={movie.Poster} alt={movie.Title} className="movie-poster" style={{ width: "150px", height: "225px" }} />
-    
+    <img src={movie.Poster} alt={movie.Title} className="movie-poster" />    
     <AddToListButton movie={movie} />
   </li>
 );
