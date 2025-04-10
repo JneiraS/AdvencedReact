@@ -149,7 +149,8 @@
       "Year": "2019",
       "imdbID": "tt6105098",
       "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BMjIwMjE1Nzc4NV5BMl5BanBnXkFtZTgwNDg4OTA1NzM@._V1_SX300.jpg"
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMjIwMjE1Nzc4NV5BMl5BanBnXkFtZTgwNDg4OTA1NzM@._V1_SX300.jpg",
+      "Note": "8"
     },
     {
       "id": "84fc",
@@ -165,7 +166,8 @@
       "Year": "2006",
       "imdbID": "tt0455590",
       "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BZDg4NjA0YzctNWMzMi00NmY1LTkyMGYtZjI4ZjFmZjMzMGE0XkEyXkFqcGc@._V1_SX300.jpg"
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZDg4NjA0YzctNWMzMi00NmY1LTkyMGYtZjI4ZjFmZjMzMGE0XkEyXkFqcGc@._V1_SX300.jpg",
+      "Note": "7"
     },
     {
       "id": "25c3",
@@ -183,6 +185,15 @@
       "Type": "movie",
       "Poster": "https://m.media-amazon.com/images/M/MV5BYzQzOGNlOTEtYmY0OS00MjE1LWFhMzQtN2JlZTI0ZTQ0NzNjXkEyXkFqcGc@._V1_SX300.jpg",
       "Note": "8"
+    },
+    {
+      "id": "fa4d",
+      "Title": "Blø for drakta",
+      "Year": "2024–",
+      "imdbID": "tt30957947",
+      "Type": "series",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZTU4ODNmZGEtODA2ZS00OTc0LTk2OTEtOTNiNmY5YjQ4N2IyXkEyXkFqcGc@._V1_SX300.jpg",
+      "Note": "2"
     }
   ]
 }

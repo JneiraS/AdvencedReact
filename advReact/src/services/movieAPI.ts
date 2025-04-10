@@ -23,7 +23,7 @@ export const searchMovies = async (movieTitle: string): Promise<Movies[]> => {
   return data.Search;
 };
 
-/** Récupération de la liste des films depuis l'API JsonServer */
+// Fonctions pour interagir avec l'API JsonServer
 export const MovieService = {
   getMovies: async () => {
     const response = await axios.get(`${API_URL}/movies`);
@@ -36,7 +36,20 @@ export const MovieService = {
     await axios.patch(`${API_URL}/movies/${movieId}`, {
       Note: note
     });
-},
+  },
+
+  /** Ajout d'un film */
+  createMovieWithNote: async (movie: Movies, note: string) => {
+    await axios.post(`${API_URL}/movies`, {
+      Title: movie.Title,
+      Year: movie.Year,
+      imdbID: movie.imdbID,
+      Type: movie.Type,
+      Poster: movie.Poster,
+      Note: note
+    });
+  },
+
 
   /** Suppression d'un film */
   deleteMovie: async (movieId: string) => {

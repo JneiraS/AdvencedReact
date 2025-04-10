@@ -5,6 +5,7 @@ import { MovieService } from "../services/movieAPI";
 import { getMovies } from '../services/funcs';
 
 
+
 const MovieList: React.FC = () => {
     const [movies, setMovies] = useState<Movies[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -15,7 +16,7 @@ const MovieList: React.FC = () => {
     useEffect(() => {
         fetchMovies();
     }, []);
-
+    // Récupération de la liste des films
     const fetchMovies = async () => {
         try {
             setLoading(true);
@@ -29,10 +30,12 @@ const MovieList: React.FC = () => {
         }
     };
 
-    const handleNoteChange = (movieId: string, value: string) => {
-        setNoteValues(prev => ({ ...prev, [movieId]: value }));
+    /** Met à jour la note d'un film dans l'état local */
+    const handleNoteChange = (movieId: string, note: string) => {
+        setNoteValues(prev => ({ ...prev, [movieId]: note }));
     };
 
+    /** Envoie la note d'un film à l'API JsonServer et met à jour l'état local */
     const handleSubmitNote = async (movie: Movies, note: string) => {
         setAdding(true);
         try {
@@ -41,7 +44,7 @@ const MovieList: React.FC = () => {
             if (existing.length > 0) {
                 await MovieService.updateMovieNote(existing[0].id, note);
             } else {
-                await createMovieWithNote(movie, note);
+                await MovieService.createMovieWithNote(movie, note);
             }
 
             updateLocalMovieNote(movie.imdbID, note);
@@ -52,22 +55,13 @@ const MovieList: React.FC = () => {
         }
     };
 
+    /** Récupère un film par son imdbID */
     const fetchMovieByImdbID = async (imdbID: string) => {
         const response = await axios.get(`http://localhost:3000/movies?imdbID=${imdbID}`);
         return response.data;
     };
 
-    const createMovieWithNote = async (movie: Movies, note: string) => {
-        return axios.post('http://localhost:3000/movies', {
-            Title: movie.Title,
-            Year: movie.Year,
-            imdbID: movie.imdbID,
-            Type: movie.Type,
-            Poster: movie.Poster,
-            Note: note
-        });
-    };
-
+    /** Met à jour la note d'un film dans l'état local */
     const updateLocalMovieNote = (imdbID: string, note: string) => {
         setMovies(prev =>
             prev.map(movie =>
@@ -75,7 +69,7 @@ const MovieList: React.FC = () => {
             )
         );
     };
-
+    /**  Rendu des cartes de film */
     const renderMovieCard = (movie: Movies) => {
         const note = noteValues[movie.imdbID] || '5';
 
@@ -114,6 +108,7 @@ const MovieList: React.FC = () => {
         );
     };
 
+    /**Fonction pour afficher la liste des films ou un message d'erreur*/
     const renderContent = () => {
         if (loading) return <div className="loading">Chargement des films...</div>;
         if (error) return <div className="error-message">{error}</div>;
