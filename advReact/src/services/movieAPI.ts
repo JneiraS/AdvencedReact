@@ -1,21 +1,50 @@
+import e from "express";
 import { Movies } from "../types/movies";
+import axios from 'axios';
 
+
+const API_URL = 'http://localhost:3000';
 
 /** 
 Recherche de films à l'aide de l'API OMDb
  */
 export const searchMovies = async (movieTitle: string): Promise<Movies[]> => {
-    const url = `https://www.omdbapi.com/?s=${encodeURIComponent(movieTitle)}&apikey=c90b7107`;
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-      throw new Error("Erreur lors du chargement des données");
+  const url = `https://www.omdbapi.com/?s=${encodeURIComponent(movieTitle)}&apikey=c90b7107`;
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error("Erreur lors du chargement des données");
+  }
+
+  const data = await response.json();
+  if (data.Response === "False") {
+    throw new Error(data.Error || "Aucun film trouvé");
+  }
+
+  return data.Search;
+};
+
+/** Récupération de la liste des films depuis l'API JsonServer */
+export const MovieService = {
+  getMovies: async () => {
+    const response = await axios.get(`${API_URL}/movies`);
+    return response.data;
+  },
+
+  /** Mise à jour de la note d'un film */
+  updateMovieNote: async (movieId: string, note: string) => {
+    //Mettre à jour l'enregistrement existant
+    await axios.patch(`http://localhost:3000/movies/${movieId}`, {
+      Note: note
+    });
+},
+
+  /** Suppression d'un film */
+  deleteMovie: async (movieId: string) => {
+    const response = await axios.get(`${API_URL}/movies?imdbID=${movieId}`);
+
+    for (const movie of response.data) {
+      await axios.delete(`${API_URL}/movies/${movie.id}`);
     }
-    
-    const data = await response.json();
-    if (data.Response === "False") {
-      throw new Error(data.Error || "Aucun film trouvé");
-    }
-    
-    return data.Search;
-  };
+  }
+}; 

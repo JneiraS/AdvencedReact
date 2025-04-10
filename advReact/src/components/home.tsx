@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { AddToListButton } from "../handlers/handleMovies";
+import { AddToListButton } from "../components/buttons";
 import { Movies } from "../types/movies";
 import React, { useState } from "react";
 import { useMoviesSearch } from "../hooks/hook_movies";

@@ -1,49 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Movies, MovieAPIResponse } from "../types/movies";
+import { MovieService } from "../services/movieAPI";
 
-// Fonction pour ajouter un film à la liste
-const postMovies = async (data: Movies): Promise<Movies | null> => {
+/**
+ * Fonction pour ajouter un film à la liste
+ * @param data - Les données du film à ajouter
+ * @returns Le film ajouté ou null en cas d'erreur
+ */
+export const postMovies = async (data: Movies): Promise<Movies | null> => {
     try {
+        // Envoie une requête POST pour ajouter le film
         const response = await axios.post<Movies>('http://localhost:3000/movies', data);
+        
+        // Retourne les données du film ajouté
         return response.data;
     } catch (error) {
+        // Log l'erreur en cas d'échec
         console.error('Error posting movies:', error);
+        
+        // Relance l'erreur pour gestion en amont
         throw error;
     }
 };
 
-// Composant pour le bouton d'ajout
-export const AddToListButton = ({ movie }: { movie: Movies }) => {
-    const [isAdding, setIsAdding] = useState(false);
-    const [success, setSuccess] = useState(false);
-    const [error, setError] = useState<string | null>(null);
 
-    const handleAddToList = async () => {
-        try {
-            setIsAdding(true);
-            setError(null);
-            await postMovies(movie);
-            setSuccess(true);
-            setTimeout(() => setSuccess(false), 2000);
-        } catch (err) {
-            setError("Erreur lors de l'ajout du film");
-        } finally {
-            setIsAdding(false);
-        }
-    };
-
-    return (
-        <button
-            className="add-btn"
-            onClick={handleAddToList}
-            disabled={isAdding}
-        >
-            {isAdding ? 'Ajout en cours...' : success ? 'Ajouté !' : 'Ajouter à ma liste'}
-            {error && <div className="error-message">{error}</div>}
-        </button>
-    );
-};
 
 // Fonction pour récupérer les films de l'API
 export const fetchMoviesFromAPI = async (): Promise<MovieAPIResponse[]> => {
@@ -90,43 +71,44 @@ const MovieList: React.FC = () => {
 
     const handleSubmitNote = async (movie: Movies, note: string) => {
         try {
-            setAdding(true);
-    
-            // Supprimer l'ancien enregistrement sans note
-            await handleDelete(movie.imdbID);
-    
-            // Ajouter le nouvel enregistrement avec la note
-            await axios.post('http://localhost:3000/movies', {
-                Title: movie.Title,
-                Year: movie.Year,
-                imdbID: movie.imdbID,
-                Type: movie.Type,
-                Poster: movie.Poster,
-                Note: note
-            });
-    
-            // Mise à jour locale de la liste des films
-            setMovies((prevMovies) => [
-                ...prevMovies.filter((m) => m.imdbID !== movie.imdbID),
-                { ...movie, Note: note }
-            ]);
-    
-            console.log("Note soumise avec succès");
-    
-        } catch (err) {
-            console.error("Erreur lors de la soumission de la note:", err);
-        } finally {
-            setAdding(false);
-        }
-    };
+          setAdding(true);
+          
+          // Récupérer l'ID de la base de données
+          const response = await axios.get(`http://localhost:3000/movies?imdbID=${movie.imdbID}`);
+          
+          if (response.data.length > 0) {
+            MovieService.updateMovieNote(response.data[0].id, note);
 
-    const handleDelete = async (movieId: string) => {
-        await axios.get(`http://localhost:3000/movies?imdbID=${movieId}`).then(async (res) => {
-            for (const movie of res.data) {
-                await axios.delete(`http://localhost:3000/movies/${movie.id}`);
-            }
-        });
-    };
+          } else {
+            // Créer un nouvel enregistrement si nécessaire
+            await axios.post('http://localhost:3000/movies', {
+              Title: movie.Title,
+              Year: movie.Year,
+              imdbID: movie.imdbID,
+              Type: movie.Type,
+              Poster: movie.Poster,
+              Note: note
+            });
+          }
+          
+          // Mise à jour locale
+          setMovies((prevMovies) => prevMovies.map(
+            (m) => m.imdbID === movie.imdbID ? { ...m, Note: note } : m
+          ));
+          
+        } catch (err) {
+          console.error("Erreur lors de la soumission de la note:", err);
+        } finally {
+          setAdding(false);
+        }
+      };
+    // const handleDelete = async (movieId: string) => {
+    //     await axios.get(`http://localhost:3000/movies?imdbID=${movieId}`).then(async (res) => {
+    //         for (const movie of res.data) {
+    //             await axios.delete(`http://localhost:3000/movies/${movie.id}`);
+    //         }
+    //     });
+    // };
 
     useEffect(() => {
         const loadMovies = async () => {
