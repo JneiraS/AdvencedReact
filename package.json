@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@testing-library/react-hooks": "^8.0.1",
     "@types/express": "^5.0.1",
     "express": "^5.1.0",
     "sqlite3": "^5.1.7",

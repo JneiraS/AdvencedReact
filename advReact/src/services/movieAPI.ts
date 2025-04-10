@@ -1,9 +1,11 @@
 import { Movies } from "../types/movies";
 
 
-// services/movieApi.ts
-export const searchMovies = async (searchTerm: string): Promise<Movies[]> => {
-    const url = `https://www.omdbapi.com/?s=${encodeURIComponent(searchTerm)}&apikey=c90b7107`;
+/** 
+Recherche de films à l'aide de l'API OMDb
+ */
+export const searchMovies = async (movieTitle: string): Promise<Movies[]> => {
+    const url = `https://www.omdbapi.com/?s=${encodeURIComponent(movieTitle)}&apikey=c90b7107`;
     const response = await fetch(url);
     
     if (!response.ok) {
