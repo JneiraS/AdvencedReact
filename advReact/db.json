@@ -96,7 +96,8 @@
       "Year": "2008",
       "imdbID": "tt3575914",
       "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BNTgwMWZiZDQtZjViYS00ZGU2LWFhNDMtZGRlYjFkNzU2Yjk2XkEyXkFqcGdeQXVyMTI0Nzk5NTQ2._V1_SX300.jpg"
+      "Poster": "https://m.media-amazon.com/images/M/MV5BNTgwMWZiZDQtZjViYS00ZGU2LWFhNDMtZGRlYjFkNzU2Yjk2XkEyXkFqcGdeQXVyMTI0Nzk5NTQ2._V1_SX300.jpg",
+      "Note": "7"
     },
     {
       "id": "57a6",
@@ -104,7 +105,8 @@
       "Year": "2016",
       "imdbID": "tt5431016",
       "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BOWFjYTgzNDgtNjM4My00ZjJjLWFmMDMtYjM1ZjQ1N2I5N2FmXkEyXkFqcGc@._V1_SX300.jpg"
+      "Poster": "https://m.media-amazon.com/images/M/MV5BOWFjYTgzNDgtNjM4My00ZjJjLWFmMDMtYjM1ZjQ1N2I5N2FmXkEyXkFqcGc@._V1_SX300.jpg",
+      "Note": "8"
     },
     {
       "id": "258e",
@@ -113,6 +115,73 @@
       "imdbID": "tt0367594",
       "Type": "movie",
       "Poster": "https://m.media-amazon.com/images/M/MV5BNjcxMjg1Njg2NF5BMl5BanBnXkFtZTcwMjQ4NzMzMw@@._V1_SX300.jpg",
+      "Note": "8"
+    },
+    {
+      "id": "2dfb",
+      "Title": "Simon Sez",
+      "Year": "1999",
+      "imdbID": "tt0168172",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZmZiNzkzZTktNTljYi00YWY0LTg2MWMtYjgwNWUwM2NmOGRjXkEyXkFqcGc@._V1_SX300.jpg",
+      "Note": "3"
+    },
+    {
+      "id": "077f",
+      "Title": "Princess Rap Battle",
+      "Year": "2014–",
+      "imdbID": "tt4079084",
+      "Type": "series",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMTg5MTkyODE3MV5BMl5BanBnXkFtZTgwMDU1Mzk2NDE@._V1_SX300.jpg",
+      "Note": "8"
+    },
+    {
+      "id": "5507",
+      "Title": "King Kong",
+      "Year": "2005",
+      "imdbID": "tt0360717",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMWY0NWE0ZjUtNjRlOS00ZDViLTgxNTQtMGMwN2FhNDY1YTg2XkEyXkFqcGc@._V1_SX300.jpg"
+    },
+    {
+      "id": "0857",
+      "Title": "The Lion King",
+      "Year": "2019",
+      "imdbID": "tt6105098",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMjIwMjE1Nzc4NV5BMl5BanBnXkFtZTgwNDg4OTA1NzM@._V1_SX300.jpg"
+    },
+    {
+      "id": "84fc",
+      "Title": "The Lord of the Rings: The Return of the King",
+      "Year": "2003",
+      "imdbID": "tt0167260",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMTZkMjBjNWMtZGI5OC00MGU0LTk4ZTItODg2NWM3NTVmNWQ4XkEyXkFqcGc@._V1_SX300.jpg"
+    },
+    {
+      "id": "1f91",
+      "Title": "The Last King of Scotland",
+      "Year": "2006",
+      "imdbID": "tt0455590",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZDg4NjA0YzctNWMzMi00NmY1LTkyMGYtZjI4ZjFmZjMzMGE0XkEyXkFqcGc@._V1_SX300.jpg"
+    },
+    {
+      "id": "25c3",
+      "Title": "King Arthur",
+      "Year": "2004",
+      "imdbID": "tt0349683",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMTk4MTk1NjI0OV5BMl5BanBnXkFtZTcwNDQxOTUyMQ@@._V1_SX300.jpg"
+    },
+    {
+      "id": "e40b",
+      "Title": "Mafia!",
+      "Year": "1998",
+      "imdbID": "tt0120741",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BYzQzOGNlOTEtYmY0OS00MjE1LWFhMzQtN2JlZTI0ZTQ0NzNjXkEyXkFqcGc@._V1_SX300.jpg",
       "Note": "8"
     }
   ]

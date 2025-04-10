@@ -1,4 +1,3 @@
-import e from "express";
 import { Movies } from "../types/movies";
 import axios from 'axios';
 
