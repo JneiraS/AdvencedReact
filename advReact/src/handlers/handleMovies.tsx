@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Movies } from "../types/movies";
-import { MovieService } from "../services/movieAPI";
+import { MovieService,API_URL } from "../services/movieAPI";
 import { getMovies } from '../services/funcs';
 
 
@@ -57,7 +57,7 @@ const MovieList: React.FC = () => {
 
     /** Récupère un film par son imdbID */
     const fetchMovieByImdbID = async (imdbID: string) => {
-        const response = await axios.get(`http://localhost:3000/movies?imdbID=${imdbID}`);
+        const response = await axios.get(`${API_URL}/movies?imdbID=${imdbID}`);
         return response.data;
     };
 

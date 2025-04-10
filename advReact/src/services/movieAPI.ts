@@ -2,7 +2,7 @@ import { Movies } from "../types/movies";
 import axios from 'axios';
 
 
-const API_URL = 'http://localhost:3000';
+export const API_URL = 'http://localhost:3000';
 
 /** 
 Recherche de films à l'aide de l'API OMDb
