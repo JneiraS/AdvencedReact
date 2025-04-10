@@ -62,6 +62,58 @@
       "Type": "series",
       "Poster": "https://m.media-amazon.com/images/M/MV5BZTY1NjQzYTAtOWMzOS00Nzg2LWE1ZWItMjQwZTYzNGE3ZmU0XkEyXkFqcGdeQXVyMjYxODIzMTg@._V1_SX300.jpg",
       "Note": "4"
+    },
+    {
+      "id": "be77",
+      "Title": "The Charl(y)ie Factor",
+      "Year": "2010",
+      "imdbID": "tt1735477",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BNTcxNDQ0MzA3M15BMl5BanBnXkFtZTcwMjk2ODc5Mw@@._V1_SX300.jpg",
+      "Note": "7"
+    },
+    {
+      "id": "e74e",
+      "Title": "Pod",
+      "Year": "2015",
+      "imdbID": "tt3541080",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMTAxMTM5MzgyNzleQTJeQWpwZ15BbWU4MDc0NzAxNjYx._V1_SX300.jpg",
+      "Note": "3"
+    },
+    {
+      "id": "4a24",
+      "Title": "Bájecná léta pod psa",
+      "Year": "1997",
+      "imdbID": "tt0118675",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZGI0ZmEzYWMtOWQ5OC00MzMyLWI4ZjQtNmZmYjVmYmYyNGYzXkEyXkFqcGdeQXVyMjIxMzMyMQ@@._V1_SX300.jpg",
+      "Note": "7"
+    },
+    {
+      "id": "f625",
+      "Title": "Só Dez Por Cento é Mentira",
+      "Year": "2008",
+      "imdbID": "tt3575914",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BNTgwMWZiZDQtZjViYS00ZGU2LWFhNDMtZGRlYjFkNzU2Yjk2XkEyXkFqcGdeQXVyMTI0Nzk5NTQ2._V1_SX300.jpg"
+    },
+    {
+      "id": "57a6",
+      "Title": "Os Dez Mandamentos - O Filme",
+      "Year": "2016",
+      "imdbID": "tt5431016",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BOWFjYTgzNDgtNjM4My00ZjJjLWFmMDMtYjM1ZjQ1N2I5N2FmXkEyXkFqcGc@._V1_SX300.jpg"
+    },
+    {
+      "id": "258e",
+      "Title": "Charlie and the Chocolate Factory",
+      "Year": "2005",
+      "imdbID": "tt0367594",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BNjcxMjg1Njg2NF5BMl5BanBnXkFtZTcwMjQ4NzMzMw@@._V1_SX300.jpg",
+      "Note": "8"
     }
   ]
 }

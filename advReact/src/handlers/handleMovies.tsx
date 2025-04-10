@@ -1,65 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Movies, MovieAPIResponse } from "../types/movies";
+import { Movies } from "../types/movies";
 import { MovieService } from "../services/movieAPI";
-
-/**
- * Fonction pour ajouter un film à la liste
- * @param data - Les données du film à ajouter
- * @returns Le film ajouté ou null en cas d'erreur
- */
-export const postMovies = async (data: Movies): Promise<Movies | null> => {
-    try {
-        // Envoie une requête POST pour ajouter le film
-        const response = await axios.post<Movies>('http://localhost:3000/movies', data);
-        
-        // Retourne les données du film ajouté
-        return response.data;
-    } catch (error) {
-        // Log l'erreur en cas d'échec
-        console.error('Error posting movies:', error);
-        
-        // Relance l'erreur pour gestion en amont
-        throw error;
-    }
-};
+import { getMovies } from '../services/funcs';
 
 
 
-// Fonction pour récupérer les films de l'API
-export const fetchMoviesFromAPI = async (): Promise<MovieAPIResponse[]> => {
-    try {
-        const response = await axios.get<MovieAPIResponse[]>('http://localhost:3000/movies');
-
-        if (!Array.isArray(response.data)) {
-            console.error("La réponse n'est pas un tableau : ", response.data);
-            throw new Error('Invalid response format');
-        }
-
-        return response.data;
-    } catch (error) {
-        console.error('Error fetching movies:', error);
-        throw error;
-    }
-};
-
-// Fonction pour transformer les données de l'API
-export const transformMovieData = (movies: MovieAPIResponse[]): Movies[] => {
-    return movies.map((movie) => ({
-        imdbID: movie.imdbID,
-        Title: movie.Title,
-        Type: movie.Type || "movie", // Valeur par défaut si manquante
-        Poster: movie.Poster,
-        Year: movie.Year,
-        Note: movie.Note || "",
-    }));
-};
-
-// Fonction pour récupérer et transformer les films
-export const getMovies = async (): Promise<Movies[]> => {
-    const movies = await fetchMoviesFromAPI();
-    return transformMovieData(movies);
-};
 
 // Composant principal pour afficher la liste de films
 const MovieList: React.FC = () => {
@@ -67,48 +13,49 @@ const MovieList: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [adding, setAdding] = useState(false);
-    const [note, setNote] = useState<string>('');
+    const [noteValues, setNoteValues] = useState<Record<string, string>>({});
+
+
+    /** Met à jour la valeur de note d'un film dans l'objet noteValues*/
+    const handleNoteChange = (movieId: string, value: string) => {
+        setNoteValues(prev => ({
+            ...prev,
+            [movieId]: value
+        }));
+    };
+
 
     const handleSubmitNote = async (movie: Movies, note: string) => {
         try {
-          setAdding(true);
-          
-          // Récupérer l'ID de la base de données
-          const response = await axios.get(`http://localhost:3000/movies?imdbID=${movie.imdbID}`);
-          
-          if (response.data.length > 0) {
-            MovieService.updateMovieNote(response.data[0].id, note);
+            setAdding(true);
+            // Récupérer l'ID de la base de données
+            const response = await axios.get(`http://localhost:3000/movies?imdbID=${movie.imdbID}`);
 
-          } else {
-            // Créer un nouvel enregistrement si nécessaire
-            await axios.post('http://localhost:3000/movies', {
-              Title: movie.Title,
-              Year: movie.Year,
-              imdbID: movie.imdbID,
-              Type: movie.Type,
-              Poster: movie.Poster,
-              Note: note
-            });
-          }
-          
-          // Mise à jour locale
-          setMovies((prevMovies) => prevMovies.map(
-            (m) => m.imdbID === movie.imdbID ? { ...m, Note: note } : m
-          ));
-          
+            if (response.data.length > 0) {
+                MovieService.updateMovieNote(response.data[0].id, note);
+
+            } else {
+                // Créer un nouvel enregistrement si nécessaire
+                await axios.post('http://localhost:3000/movies', {
+                    Title: movie.Title,
+                    Year: movie.Year,
+                    imdbID: movie.imdbID,
+                    Type: movie.Type,
+                    Poster: movie.Poster,
+                    Note: note
+                });
+            }
+            // Mise à jour locale
+            setMovies((prevMovies) => prevMovies.map(
+                (m) => m.imdbID === movie.imdbID ? { ...m, Note: note } : m
+            ));
+
         } catch (err) {
-          console.error("Erreur lors de la soumission de la note:", err);
+            console.error("Erreur lors de la soumission de la note:", err);
         } finally {
-          setAdding(false);
+            setAdding(false);
         }
-      };
-    // const handleDelete = async (movieId: string) => {
-    //     await axios.get(`http://localhost:3000/movies?imdbID=${movieId}`).then(async (res) => {
-    //         for (const movie of res.data) {
-    //             await axios.delete(`http://localhost:3000/movies/${movie.id}`);
-    //         }
-    //     });
-    // };
+    };
 
     useEffect(() => {
         const loadMovies = async () => {
@@ -160,16 +107,19 @@ const MovieList: React.FC = () => {
                                             type="range"
                                             min="1"
                                             max="10"
-                                            value={note}
-                                            onChange={(e) => setNote(e.target.value)}
+                                            value={noteValues[movie.imdbID] || '5'}
+                                            onChange={(e) => handleNoteChange(movie.imdbID, e.target.value)}
                                         />
-                                        <p>Note: {note}</p>
+                                        <p>Note: {noteValues[movie.imdbID] || '5'}</p>
                                         <button
                                             className="submit-note-btn"
-                                            onClick={() => handleSubmitNote(movie, note)}
+                                            onClick={() => handleSubmitNote(
+                                                movie,
+                                                noteValues[movie.imdbID] || '5'
+                                            )}
                                             disabled={adding}
                                         >
-                                            Soumettre la note
+                                            {adding ? 'Enregistrement...' : 'Soumettre la note'}
                                         </button>
                                     </>
                                 )}

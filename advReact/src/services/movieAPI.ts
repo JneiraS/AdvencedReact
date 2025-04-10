@@ -34,7 +34,7 @@ export const MovieService = {
   /** Mise à jour de la note d'un film */
   updateMovieNote: async (movieId: string, note: string) => {
     //Mettre à jour l'enregistrement existant
-    await axios.patch(`http://localhost:3000/movies/${movieId}`, {
+    await axios.patch(`${API_URL}/movies/${movieId}`, {
       Note: note
     });
 },

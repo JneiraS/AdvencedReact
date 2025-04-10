@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Movies } from "../types/movies";
-import { postMovies } from "../handlers/handleMovies";
+import { postMovies } from "../services/funcs";
 
 
 // Composant pour le bouton d'ajout
