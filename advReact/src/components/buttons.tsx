@@ -9,21 +9,17 @@ export const AddToListButton = ({ movie }: { movie: Movies }) => {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    /**  Fonction pour gérer l'ajout d'un film à la liste de films personnalisée*/
+    /**  Fonction pour gérer l'ajout d'un film à la liste de films fav*/
     const handleAddToList = async () => {
         try {
-            // On indique que l'ajout est en cours
             setIsAdding(true);
-            // On réinitialise l'erreur
             setError(null);
             await postMovies(movie);
-            // Si tout s'est bien passé, on affiche un message de réussite
             setSuccess(true);
             setTimeout(() => setSuccess(false), 2000);
         } catch (err) {
             setError("Erreur lors de l'ajout du film");
         } finally {
-            // On réinitialise l'état
             setIsAdding(false);
         }
     };
