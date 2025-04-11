@@ -1,7 +1,13 @@
 {
+  "compilerOptions": {
+    // ... autres options ...
+    "esModuleInterop": true,
+    // ... autres options ...
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ]
 }
+

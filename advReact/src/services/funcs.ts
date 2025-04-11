@@ -3,8 +3,6 @@ import axios from 'axios';
 
 /**
  * Fonction pour ajouter un film à la liste
- * @param data - Les données du film à ajouter
- * @returns Le film ajouté ou null en cas d'erreur
  */
 export const postMovies = async (data: Movies): Promise<Movies | null> => {
     try {
@@ -44,7 +42,7 @@ export const transformMovieData = (movies: MovieAPIResponse[]): Movies[] => {
     return movies.map((movie) => ({
         imdbID: movie.imdbID,
         Title: movie.Title,
-        Type: movie.Type || "movie", // Valeur par défaut si manquante
+        Type: movie.Type || "movie",
         Poster: movie.Poster,
         Year: movie.Year,
         Note: movie.Note || "",

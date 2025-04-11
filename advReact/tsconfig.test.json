@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+      // ... autres options ...
+      "esModuleInterop": true,
+      // ... autres options ...
+    }
+  }

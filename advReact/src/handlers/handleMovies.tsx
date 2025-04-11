@@ -125,7 +125,7 @@ const MovieList: React.FC = () => {
         <div className="movie-list">
             <h1>Liste des films</h1>
             {renderContent()}
-        </div>
+        </div> 
     );
 };
 
