@@ -23,7 +23,7 @@ export const searchMovies = async (movieTitle: string): Promise<Movies[]> => {
   return data.Search;
 };
 
-// Fonctions pour interagir avec l'API JsonServer
+// Interface pour interagir avec l'API JsonServer
 export const MovieService = {
   getMovies: async () => {
     const response = await axios.get(`${API_URL}/movies`);

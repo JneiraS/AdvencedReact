@@ -46,7 +46,7 @@ export const MovieItem: React.FC<{ movie: Movies }> = ({ movie }) => (
   </li>
 );
 
-// Composant principal pour afficher la liste de films
+/**  Composant principal pour afficher la liste de films */
 export const renderContent = (
   isLoading: boolean,
   error: string | null,

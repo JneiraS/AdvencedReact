@@ -15,8 +15,9 @@ export const useMoviesSearch = (searchTerm: string) => {
   const [movies, setMovies] = useState<Movies[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 800);
 
+// Se déclenche lorsque le terme de recherche débounced change.
   useEffect(() => {
     const fetchMovies = async () => {
       if (!debouncedSearchTerm) {
@@ -29,7 +30,9 @@ export const useMoviesSearch = (searchTerm: string) => {
 
       try {
         const results = await searchMovies(debouncedSearchTerm);
+        // On met à jour les résultats
         setMovies(results);
+      // Gestion des erreurs
       } catch (err) {
         const errorMessage = err instanceof Error
           ? err.message
