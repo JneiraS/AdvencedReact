@@ -52,7 +52,7 @@ export const renderContent = (
   error: string | null,
   movies: Movies[]
 ) => {
-  if (isLoading) return <p>Chargement...</p>;
+  if (isLoading) return <p>Chargement...</p>; 
   if (error) return <p>Erreur : {error}</p>;
   if (movies.length > 0) {
     return (

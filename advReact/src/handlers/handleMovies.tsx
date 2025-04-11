@@ -30,7 +30,7 @@ const MovieList: React.FC = () => {
         }
     };
 
-    /** Met à jour la note d'un film dans l'état local */
+    /** Met à jour la note d'un film dans l'état local  */
     const handleNoteChange = (movieId: string, note: string) => {
         setNoteValues(prev => ({ ...prev, [movieId]: note }));
     };
