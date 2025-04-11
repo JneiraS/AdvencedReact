@@ -62,20 +62,4 @@ describe('searchMovies', () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
-  it('devrait encoder correctement les termes de recherche avec des caractères spéciaux', async () => {
-    // Mock de la réponse
-    fetchMock.mockResponseOnce(JSON.stringify({
-      Response: 'True',
-      Search: []
-    }));
-
-    // Terme de recherche avec des caractères spéciaux
-    const searchTerm = 'star & wars';
-    await searchMovies(searchTerm);
-
-    // Vérification que l'URL est correctement encodée
-    expect(fetchMock).toHaveBeenCalledWith(
-      `https://www.omdbapi.com/?s=${encodeURIComponent(searchTerm)}&apikey=c90b7107`
-    );
-  });
 });

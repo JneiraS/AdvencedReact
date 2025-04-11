@@ -52,6 +52,7 @@ export const renderContent = (
   error: string | null,
   movies: Movies[]
 ) => {
+  // Message de chargement
   if (isLoading) return <p>Chargement...</p>; 
   if (error) return <p>Erreur : {error}</p>;
   if (movies.length > 0) {
@@ -70,7 +71,6 @@ export const renderContent = (
 export const ListeMovies: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const { movies, isLoading, error } = useMoviesSearch(searchTerm);
-
 
   // Fonction pour gérer la recherche
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
