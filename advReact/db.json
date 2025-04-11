@@ -91,15 +91,6 @@
       "Note": "7"
     },
     {
-      "id": "f625",
-      "Title": "Só Dez Por Cento é Mentira",
-      "Year": "2008",
-      "imdbID": "tt3575914",
-      "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BNTgwMWZiZDQtZjViYS00ZGU2LWFhNDMtZGRlYjFkNzU2Yjk2XkEyXkFqcGdeQXVyMTI0Nzk5NTQ2._V1_SX300.jpg",
-      "Note": "7"
-    },
-    {
       "id": "57a6",
       "Title": "Os Dez Mandamentos - O Filme",
       "Year": "2016",
@@ -118,15 +109,6 @@
       "Note": "8"
     },
     {
-      "id": "2dfb",
-      "Title": "Simon Sez",
-      "Year": "1999",
-      "imdbID": "tt0168172",
-      "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BZmZiNzkzZTktNTljYi00YWY0LTg2MWMtYjgwNWUwM2NmOGRjXkEyXkFqcGc@._V1_SX300.jpg",
-      "Note": "3"
-    },
-    {
       "id": "077f",
       "Title": "Princess Rap Battle",
       "Year": "2014–",
@@ -134,14 +116,6 @@
       "Type": "series",
       "Poster": "https://m.media-amazon.com/images/M/MV5BMTg5MTkyODE3MV5BMl5BanBnXkFtZTgwMDU1Mzk2NDE@._V1_SX300.jpg",
       "Note": "8"
-    },
-    {
-      "id": "5507",
-      "Title": "King Kong",
-      "Year": "2005",
-      "imdbID": "tt0360717",
-      "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BMWY0NWE0ZjUtNjRlOS00ZDViLTgxNTQtMGMwN2FhNDY1YTg2XkEyXkFqcGc@._V1_SX300.jpg"
     },
     {
       "id": "0857",
@@ -179,24 +153,6 @@
       "Poster": "https://m.media-amazon.com/images/M/MV5BMTk4MTk1NjI0OV5BMl5BanBnXkFtZTcwNDQxOTUyMQ@@._V1_SX300.jpg"
     },
     {
-      "id": "e40b",
-      "Title": "Mafia!",
-      "Year": "1998",
-      "imdbID": "tt0120741",
-      "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BYzQzOGNlOTEtYmY0OS00MjE1LWFhMzQtN2JlZTI0ZTQ0NzNjXkEyXkFqcGc@._V1_SX300.jpg",
-      "Note": "8"
-    },
-    {
-      "id": "fa4d",
-      "Title": "Blø for drakta",
-      "Year": "2024–",
-      "imdbID": "tt30957947",
-      "Type": "series",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BZTU4ODNmZGEtODA2ZS00OTc0LTk2OTEtOTNiNmY5YjQ4N2IyXkEyXkFqcGc@._V1_SX300.jpg",
-      "Note": "2"
-    },
-    {
       "id": "7765",
       "Title": "Back to the Future Part III",
       "Year": "1990",
@@ -211,6 +167,23 @@
       "imdbID": "tt0266697",
       "Type": "movie",
       "Poster": "https://m.media-amazon.com/images/M/MV5BZmMyYzJlZmYtY2I3NC00NjAyLTkyZWItZjdjZDI1YTYyYTEwXkEyXkFqcGc@._V1_SX300.jpg"
+    },
+    {
+      "id": "14eb",
+      "Title": "Batman Begins",
+      "Year": "2005",
+      "imdbID": "tt0372784",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BODIyMDdhNTgtNDlmOC00MjUxLWE2NDItODA5MTdkNzY3ZTdhXkEyXkFqcGc@._V1_SX300.jpg"
+    },
+    {
+      "id": "fa03",
+      "Title": "Batman & Robin",
+      "Year": "1997",
+      "imdbID": "tt0118688",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BYzU3ZjE3M2UtM2E4Ni00MDI5LTkyZGUtOTFkMGIyYjNjZGU3XkEyXkFqcGc@._V1_SX300.jpg",
+      "Note": "7"
     }
   ]
 }

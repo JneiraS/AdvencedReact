@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Movies } from "../types/movies";
-import { MovieService,API_URL } from "../services/movieAPI";
+import { MovieService, API_URL } from "../services/movieAPI";
 import { getMovies } from '../services/funcs';
 
 
@@ -103,6 +103,14 @@ const MovieList: React.FC = () => {
                     ) : (
                         <p>Note: {movie.Note}</p>
                     )}
+                    <button
+                        className="sup-btn"
+                        onClick={async () => {
+                            await MovieService.deleteMovie(movie.imdbID);
+                            // Appel d'une fonction pour recharger les données
+                            fetchMovies(); 
+                        }}
+                    >Supprimer</button>
                 </div>
             </div>
         );
@@ -125,7 +133,7 @@ const MovieList: React.FC = () => {
         <div className="movie-list">
             <h1>Liste des films</h1>
             {renderContent()}
-        </div> 
+        </div>
     );
 };
 
